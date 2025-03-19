@@ -1,0 +1,1316 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Aman Sharma | Frontend Developer</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary: #0074E4;
+            --primary-light: #e6f2ff;
+            --primary-dark: #0058b3;
+            --secondary: #2d3142;
+            --dark: #333;
+            --light: #f8f9fa;
+            --gray: #6c757d;
+            --gray-light: #e9ecef;
+            --text: #212529;
+            --success: #28a745;
+            --transition: all 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Manrope', sans-serif;
+        }
+
+        html {
+            scroll-behavior: smooth;
+            scroll-padding-top: 80px;
+        }
+
+        body {
+            color: var(--text);
+            background-color: var(--light);
+            line-height: 1.7;
+            font-weight: 400;
+            overflow-x: hidden;
+        }
+
+        a {
+            text-decoration: none;
+            color: var(--primary);
+            transition: var(--transition);
+        }
+
+        a:hover {
+            color: var(--primary-dark);
+        }
+
+        h1, h2, h3, h4 {
+            margin-bottom: 1.5rem;
+            line-height: 1.2;
+            font-weight: 700;
+        }
+
+        h1 {
+            font-size: 3.5rem;
+            letter-spacing: -0.5px;
+        }
+
+        h2 {
+            font-size: 2.5rem;
+            letter-spacing: -0.3px;
+        }
+
+        h3 {
+            font-size: 1.75rem;
+        }
+
+        p {
+            margin-bottom: 1.5rem;
+            color: var(--gray);
+        }
+
+        section {
+            padding: 6rem 0;
+            position: relative;
+        }
+
+        section:nth-child(even) {
+            background-color: white;
+        }
+
+        .container {
+            width: 90%;
+            max-width: 1140px;
+            margin: 0 auto;
+        }
+
+        .text-primary {
+            color: var(--primary);
+        }
+
+        .section-divider {
+            width: 100%;
+            height: 1px;
+            background: linear-gradient(90deg, rgba(0,116,228,0) 0%, rgba(0,116,228,0.5) 50%, rgba(0,116,228,0) 100%);
+            margin: 2rem 0;
+        }
+
+        .section-title {
+            position: relative;
+            display: inline-block;
+            margin-bottom: 3rem;
+            padding-bottom: 1rem;
+        }
+
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 60px;
+            height: 3px;
+            background-color: var(--primary);
+        }
+
+        header {
+            padding: 1rem 0;
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 100;
+            background-color: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
+            transition: var(--transition);
+        }
+
+        header.scrolled {
+            padding: 0.8rem 0;
+        }
+
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--dark);
+            position: relative;
+            padding-bottom: 3px;
+        }
+
+        .logo::after {
+            content: '';
+            position: absolute;
+            width: 100%;
+            height: 2px;
+            bottom: 0;
+            left: 0;
+            background: linear-gradient(90deg, var(--primary) 0%, transparent 100%);
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2.5rem;
+            list-style: none;
+        }
+
+        .nav-links a {
+            color: var(--dark);
+            font-weight: 500;
+            font-size: 0.95rem;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            position: relative;
+            padding: 5px 0;
+        }
+
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            bottom: 0;
+            left: 0;
+            background-color: var(--primary);
+            transition: var(--transition);
+            opacity: 0;
+        }
+
+        .nav-links a:hover {
+            color: var(--primary);
+        }
+
+        .nav-links a:hover::after {
+            width: 100%;
+            opacity: 1;
+        }
+
+        .menu-btn {
+            display: none;
+            cursor: pointer;
+        }
+
+        .menu-btn .bar {
+            width: 25px;
+            height: 2px;
+            background-color: var(--dark);
+            margin: 6px 0;
+            transition: var(--transition);
+        }
+
+        .hero {
+            padding-top: 120px;
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            background: linear-gradient(180deg, #f8f9fa 0%, white 100%);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: radial-gradient(circle at 80% 20%, rgba(0, 116, 228, 0.05) 0%, transparent 50%);
+            z-index: 0;
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 1;
+            max-width: 800px;
+            animation: fadeIn 1s ease;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .hero h1 {
+            font-size: clamp(2.5rem, 5vw, 4rem);
+            margin-bottom: 1.5rem;
+        }
+
+        .hero h1 span {
+            color: var(--primary);
+            position: relative;
+            display: inline-block;
+        }
+
+        .hero h1 span::after {
+            content: '';
+            position: absolute;
+            width: 100%;
+            height: 5px;
+            bottom: 5px;
+            left: 0;
+            background-color: rgba(0, 116, 228, 0.1);
+            z-index: -1;
+        }
+
+        .hero p {
+            font-size: 1.25rem;
+            margin-bottom: 2.5rem;
+            color: var(--gray);
+            max-width: 600px;
+        }
+
+        .profile-image-container {
+            position: relative;
+            width: 200px;
+            height: 200px;
+            margin-bottom: 2.5rem;
+            border-radius: 50%;
+            overflow: hidden;
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
+            border: 4px solid white;
+        }
+
+        .profile-image {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: var(--transition);
+        }
+
+        .profile-image:hover {
+            transform: scale(1.05);
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 1rem 2rem;
+            background-color: var(--primary);
+            color: white;
+            font-weight: 600;
+            border-radius: 5px;
+            transition: var(--transition);
+            letter-spacing: 0.5px;
+            text-transform: uppercase;
+            font-size: 0.9rem;
+            box-shadow: 0 5px 15px rgba(0, 116, 228, 0.2);
+        }
+
+        .btn:hover {
+            background-color: var(--primary-dark);
+            transform: translateY(-3px);
+            box-shadow: 0 8px 20px rgba(0, 116, 228, 0.3);
+            color: white;
+        }
+
+        .social-links {
+            display: flex;
+            gap: 1rem;
+            margin-top: 2rem;
+        }
+
+        .social-links a {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 45px;
+            height: 45px;
+            border-radius: 50%;
+            color: var(--primary);
+            background-color: white;
+            transition: var(--transition);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+        }
+
+        .social-links a:hover {
+            background-color: var(--primary);
+            color: white;
+            transform: translateY(-3px);
+            box-shadow: 0 8px 20px rgba(0, 116, 228, 0.2);
+        }
+
+        .about-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+            align-items: center;
+        }
+
+        .about-text {
+            position: relative;
+        }
+
+        .about-text p {
+            margin-bottom: 1.5rem;
+            font-size: 1.05rem;
+        }
+
+        .about-text p:last-child {
+            margin-bottom: 0;
+        }
+
+        .about-img {
+            position: relative;
+            overflow: hidden;
+            border-radius: 10px;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+        }
+
+        .experience-container {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 2rem;
+        }
+
+        .experience-card {
+            background-color: white;
+            border-radius: 10px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.06);
+            padding: 2rem;
+            transition: var(--transition);
+            position: relative;
+            border-left: 4px solid var(--primary);
+        }
+
+        .experience-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.1);
+        }
+
+        .exp-date {
+            color: var(--primary);
+            font-weight: 700;
+            margin-bottom: 0.75rem;
+            font-size: 0.9rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .exp-title {
+            font-size: 1.5rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .exp-company {
+            color: var(--gray);
+            font-weight: 600;
+            margin-bottom: 1.5rem;
+            font-size: 1.1rem;
+        }
+
+        .exp-desc {
+            color: var(--gray);
+            font-size: 1rem;
+            margin-bottom: 0;
+        }
+
+        .projects-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(340px, 1fr));
+            gap: 2.5rem;
+        }
+
+        .project-card {
+            background-color: white;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.06);
+            transition: var(--transition);
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .project-card:hover {
+            transform: translateY(-7px);
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.1);
+        }
+
+        .project-img {
+            height: 220px;
+            background-color: var(--primary-light);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 4rem;
+            color: var(--primary);
+            transition: var(--transition);
+        }
+
+        .project-card:hover .project-img {
+            color: white;
+            background-color: var(--primary);
+        }
+
+        .project-content {
+            padding: 2rem;
+            flex-grow: 1;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .project-title {
+            font-size: 1.35rem;
+            margin-bottom: 1rem;
+            color: var(--dark);
+        }
+
+        .project-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.75rem;
+            margin-top: auto;
+            padding-top: 1.5rem;
+        }
+
+        .project-tag {
+            padding: 0.4rem 0.8rem;
+            background-color: var(--primary-light);
+            color: var(--primary);
+            border-radius: 5px;
+            font-size: 0.8rem;
+            font-weight: 600;
+            transition: var(--transition);
+        }
+
+        .project-tag:hover {
+            background-color: var(--primary);
+            color: white;
+        }
+
+        .presentation-link {
+            display: inline-block;
+            color: var(--primary);
+            font-weight: 600;
+            margin-top: 1rem;
+            transition: var(--transition);
+        }
+
+        .presentation-link:hover {
+            color: var(--primary-dark);
+        }
+
+        .skills-container {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1rem;
+            justify-content: center;
+        }
+
+        .skill-item {
+            padding: 0.75rem 1.5rem;
+            background-color: white;
+            border-radius: 30px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+            transition: var(--transition);
+            font-weight: 500;
+            color: var(--gray);
+            border: 1px solid var(--gray-light);
+        }
+
+        .skill-item:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.08);
+            color: var(--primary);
+            border-color: var(--primary);
+        }
+
+        .achievements-container {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 3rem;
+        }
+
+        .achievement-card {
+            background-color: white;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.06);
+            transition: var(--transition);
+        }
+
+        .achievement-card:hover {
+            transform: translateY(-7px);
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.1);
+        }
+
+        .achievement-content {
+            padding: 2.5rem;
+        }
+
+        .achievement-title {
+            font-size: 1.75rem;
+            margin-bottom: 1.5rem;
+            color: var(--primary);
+            position: relative;
+            padding-bottom: 1rem;
+        }
+
+        .achievement-title::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 40px;
+            height: 3px;
+            background-color: var(--primary);
+        }
+
+        .achievement-list {
+            list-style-position: outside;
+            margin-bottom: 1.5rem;
+            padding-left: 1.5rem;
+        }
+
+        .achievement-list li {
+            margin-bottom: 0.75rem;
+            color: var(--gray);
+        }
+
+        .achievement-gallery {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+            gap: 1rem;
+            margin-top: 2rem;
+        }
+
+        .gallery-img {
+            width: 100%;
+            height: 180px;
+            object-fit: cover;
+            border-radius: 8px;
+            transition: var(--transition);
+            cursor: pointer;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        }
+
+        .gallery-img:hover {
+            transform: scale(1.05);
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+        }
+
+        .contact-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+            align-items: center;
+        }
+
+        .contact-info {
+            padding-right: 2rem;
+        }
+
+        .contact-info h3 {
+            margin-bottom: 1.5rem;
+            font-size: 1.75rem;
+        }
+
+        .contact-info p {
+            margin-bottom: 1rem;
+            font-size: 1.05rem;
+        }
+
+        .contact-info p:last-child {
+            margin-bottom: 0;
+        }
+
+        .contact-detail {
+            display: flex;
+            align-items: center;
+            margin-bottom: 1.5rem;
+        }
+
+        .contact-icon {
+            width: 45px;
+            height: 45px;
+            background-color: var(--primary-light);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-right: 1rem;
+            color: var(--primary);
+        }
+
+        .contact-text {
+            flex: 1;
+        }
+
+        .contact-text span {
+            display: block;
+            font-weight: 600;
+            color: var(--dark);
+            margin-bottom: 0.25rem;
+        }
+
+        .contact-form {
+            display: flex;
+            flex-direction: column;
+            gap: 1.5rem;
+            background-color: white;
+            padding: 2.5rem;
+            border-radius: 12px;
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.08);
+        }
+
+        .form-control {
+            display: flex;
+            flex-direction: column;
+            gap: 0.5rem;
+        }
+
+        .form-label {
+            font-weight: 600;
+            color: var(--dark);
+        }
+
+        .form-input {
+            padding: 1rem;
+            border: 1px solid var(--gray-light);
+            border-radius: 5px;
+            outline: none;
+            transition: var(--transition);
+            font-size: 1rem;
+        }
+
+        .form-input:focus {
+            border-color: var(--primary);
+            box-shadow: 0 0 0 3px rgba(0, 116, 228, 0.1);
+        }
+
+        .form-textarea {
+            height: 150px;
+            resize: none;
+        }
+
+        .btn-submit {
+            width: 100%;
+            cursor: pointer;
+            border: none;
+        }
+
+        footer {
+            padding: 4rem 0 2rem;
+            background-color: var(--secondary);
+            color: white;
+        }
+
+        .footer-content {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 2rem;
+            text-align: center;
+        }
+
+        .footer-logo {
+            font-size: 2rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+            color: white;
+        }
+
+        .footer-links {
+            display: flex;
+            gap: 2rem;
+            margin-bottom: 2rem;
+        }
+
+        .footer-links a {
+            color: rgba(255, 255, 255, 0.8);
+            transition: var(--transition);
+            font-weight: 500;
+        }
+
+        .footer-links a:hover {
+            color: white;
+        }
+
+        .footer-social {
+            display: flex;
+            gap: 1.5rem;
+            margin-bottom: 2rem;
+        }
+
+        .footer-social a {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            color: white;
+            background-color: rgba(255, 255, 255, 0.1);
+            transition: var(--transition);
+        }
+
+        .footer-social a:hover {
+            background-color: var(--primary);
+            transform: translateY(-3px);
+        }
+
+        .footer-bottom {
+            width: 100%;
+            padding-top: 2rem;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            text-align: center;
+            color: rgba(255, 255, 255, 0.6);
+            font-size: 0.9rem;
+        }
+
+        .scroll-top {
+            position: fixed;
+            bottom: 2rem;
+            right: 2rem;
+            width: 45px;
+            height: 45px;
+            background-color: var(--primary);
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            opacity: 0;
+            visibility: hidden;
+            transition: var(--transition);
+            z-index: 99;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.15);
+        }
+
+        .scroll-top.active {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .scroll-top:hover {
+            background-color: var(--primary-dark);
+            transform: translateY(-3px);
+        }
+
+        @media (max-width: 992px) {
+            .about-grid, .contact-grid {
+                grid-template-columns: 1fr;
+                gap: 3rem;
+            }
+
+            .projects-grid {
+                grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            }
+        }
+
+        @media (max-width: 768px) {
+            section {
+                padding: 4rem 0;
+            }
+
+            .nav-links {
+                position: fixed;
+                top: 0;
+                right: -100%;
+                width: 70%;
+                height: 100vh;
+                background-color: white;
+                display: flex;
+                flex-direction: column;
+                justify-content: center;
+                align-items: center;
+                transition: var(--transition);
+                box-shadow: -5px 0 15px rgba(0, 0, 0, 0.1);
+                z-index: 101;
+            }
+
+            .nav-links.active {
+                right: 0;
+            }
+
+            .menu-btn {
+                display: block;
+                z-index: 102;
+            }
+
+            .menu-btn.active .bar:nth-child(1) {
+                transform: rotate(-45deg) translate(-5px, 6px);
+            }
+
+            .menu-btn.active .bar:nth-child(2) {
+                opacity: 0;
+            }
+
+            .menu-btn.active .bar:nth-child(3) {
+                transform: rotate(45deg) translate(-5px, -6px);
+            }
+
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+
+            .achievement-gallery {
+                grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
+            }
+
+            .gallery-img {
+                height: 140px;
+            }
+
+            .contact-grid {
+                gap: 2rem;
+            }
+
+            .contact-info {
+                padding-right: 0;
+            }
+        }
+
+        @media (max-width: 576px) {
+            .container {
+                width: 95%;
+            }
+
+            .projects-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .contact-form {
+                padding: 1.5rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header id="header">
+        <div class="container">
+            <nav>
+                <a href="#" class="logo">Aman Sharma</a>
+                <ul class="nav-links">
+                    <li><a href="#home">Home</a></li>
+                    <li><a href="#about">About</a></li>
+                    <li><a href="#experience">Experience</a></li>
+                    <li><a href="#projects">Projects</a></li>
+                    <li><a href="#skills">Skills</a></li>
+                    <li><a href="#achievements">Achievements</a></li>
+                    <li><a href="#contact">Contact</a></li>
+                </ul>
+                <div class="menu-btn">
+                    <div class="bar"></div>
+                    <div class="bar"></div>
+                    <div class="bar"></div>
+                </div>
+            </nav>
+        </div>
+    </header>
+
+    <section id="home" class="hero">
+        <div class="container">
+            <div class="hero-content">
+                <div class="profile-image-container">
+                    <img src="https://media.licdn.com/dms/image/v2/D4D03AQFs_ayruXvhtw/profile-displayphoto-shrink_400_400/B4DZT2qlm4HwAk-/0/1739305147903?e=1747872000&v=beta&t=-2MWlENDom12MBKgljJJ1XeKx5jrY8Y_HKIa-T_abfg" alt="Aman Sharma" class="profile-image">
+                </div>
+                <h1>Hi, I'm <span>Aman Sharma</span></h1>
+                <p>Frontend Developer at Desertcart with expertise in React, JavaScript, and web technologies. Passionate about creating efficient, intuitive, and responsive web applications.</p>
+                <a href="#contact" class="btn">Get In Touch</a>
+                <div class="social-links">
+                    <a href="https://www.linkedin.com/in/aman32767/" target="_blank">
+                        <i class="fab fa-linkedin-in"></i>
+                    </a>
+                    <a href="https://github.com/aman32767" target="_blank">
+                        <i class="fab fa-github"></i>
+                    </a>
+                    <a href="https://medium.com/@writetoaman99" target="_blank">
+                        <i class="fab fa-medium-m"></i>
+                    </a>
+                    <a href="mailto:writetoaman99@gmail.com">
+                        <i class="far fa-envelope"></i>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="about">
+        <div class="container">
+            <h2 class="section-title">About Me</h2>
+                <div class="about-text">
+                    <p>I'm a Frontend Developer with 4+ years of experience specializing in JavaScript, React, and modern web technologies. Currently working at Desertcart, I build scalable and innovative solutions for users worldwide.</p>
+                    <p>I like to call myself an "accidental developer" because I never planned to become a software engineer—it just happened. It all began one Sunday morning in 2019 when I came across a YouTube video titled "Learn HTML in One Hour." Out of curiosity, I clicked on it. That simple click changed my life. Watching a few lines of code turn into something real on a screen felt magical. It hooked me instantly.</p>
+                    <p>But coding isn't the only thing I care about. I'm also passionate about fitness. Over the past two years, I've lost more than 15 kg (documenting my journey @the.dumb.bells, haha), and lifting weights has become a big part of my life. The discipline I've developed at the gym helps me in other areas too, like work and personal growth.</p>
+                    <p>I have a strong background in hackathons, having participated in and won multiple national-level competitions. This experience has sharpened my problem-solving skills and ability to work efficiently under pressure.</p>
+                </div>
+        </div>
+    </section>
+
+    <section id="experience">
+        <div class="container">
+            <h2 class="section-title">Work Experience</h2>
+            <div class="experience-container">
+                <div class="experience-card">
+                    <div class="exp-date">Nov 2024 - Present</div>
+                    <h3 class="exp-title">Senior Software Engineer</h3>
+                    <div class="exp-company">Desertcart</div>
+                    <p class="exp-desc">Working as a Frontend Developer at Desertcart, an e-commerce platform. Developing and optimizing user interfaces for improved customer experience.</p>
+                </div>
+
+                <div class="experience-card">
+                    <div class="exp-date">Jul 2020 - Oct 2024</div>
+                    <h3 class="exp-title">Frontend Developer</h3>
+                    <div class="exp-company">EkAnek (Foxy)</div>
+                    <p class="exp-desc">Designed and developed Foxy, focused on building the ecosystem for new age brands in Beauty categories. Engineered pioneering App optimizations, reducing app size from 45Mb to 12Mb and cutting launch time from 12 seconds to 4 seconds.</p>
+                    <p class="exp-desc">Resolved re-rendering issues across the app, enhancing user experience and overall stability resulting in 58-59 FPS scrolling. Played a key role in the successful launch of the Membership Program (Foxy edge), driving 10,000+ paid memberships.</p>
+                </div>
+
+                <div class="experience-card">
+                    <div class="exp-date">Jun 2019 - Sep 2019</div>
+                    <h3 class="exp-title">Embedded Systems Intern</h3>
+                    <div class="exp-company">Optimus Research Lab</div>
+                    <p class="exp-desc">Devised a switching mechanism to distribute the workload of air conditioners. Implemented GSM technology to facilitate switching through SMS commands. Engineered the necessary hardware components for this system.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="projects">
+        <div class="container">
+            <h2 class="section-title">Projects</h2>
+            <div class="projects-grid">
+                <div class="project-card">
+                    <div class="project-img">🗑️</div>
+                    <div class="project-content">
+                        <h3 class="project-title">Smart Garbage Disposal System</h3>
+                        <p>Designed and implemented an intelligent garbage disposal system to optimize waste collection routes using IoT and data analytics. The system leverages ultrasonic sensor data from smart dustbins distributed across a region to dynamically generate the most efficient disposal routes, reducing fuel consumption, operational costs, and environmental impact.</p>
+                        <p><a href="https://slides.com/aman32767/garbage" target="_blank" class="presentation-link">View Presentation <i class="fas fa-arrow-right"></i></a></p>
+                        <div class="project-tags">
+                            <span class="project-tag">IoT</span>
+                            <span class="project-tag">Data Analytics</span>
+                            <span class="project-tag">Sensors</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="project-card">
+                    <div class="project-img">🚪</div>
+                    <div class="project-content">
+                        <h3 class="project-title">AnywhereDoor (AR Travel Application)</h3>
+                        <p>AnywhereDoor is an Augmented Reality (AR) travel application that enhances travel experiences by providing virtual tours, real-time AR navigation, and interactive guides. Built using Unity, Google ARCore, and ProBuilder, it allows users to explore places interactively by overlaying digital information onto real-world landmarks.</p>
+                        <p><a href="https://slides.com/aman32767/anywheredoor-9f6ae2" target="_blank" class="presentation-link">View Presentation <i class="fas fa-arrow-right"></i></a></p>
+                        <div class="project-tags">
+                            <span class="project-tag">Unity</span>
+                            <span class="project-tag">AR</span>
+                            <span class="project-tag">Google ARCore</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="project-card">
+                    <div class="project-img">🧭</div>
+                    <div class="project-content">
+                        <h3 class="project-title">GetToTheSafeZone (Navigation App)</h3>
+                        <p>GetToTheSafeZone is an innovative navigation application designed to assist users in finding their way in areas where traditional mapping services like Google Maps may not be effective, such as complex campuses or indoor environments.</p>
+                        <p><a href="https://slides.com/aman32767/get-to-the-safe-zone" target="_blank" class="presentation-link">View Presentation <i class="fas fa-arrow-right"></i></a></p>
+                        <div class="project-tags">
+                            <span class="project-tag">Navigation</span>
+                            <span class="project-tag">JavaScript</span>
+                            <span class="project-tag">User Experience</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="skills">
+        <div class="container">
+            <h2 class="section-title">Skills</h2>
+            <div class="skills-container">
+                <div class="skill-item">HTML</div>
+                <div class="skill-item">CSS</div>
+                <div class="skill-item">JavaScript</div>
+                <div class="skill-item">React.js</div>
+                <div class="skill-item">Next.js</div>
+                <div class="skill-item">React Native</div>
+                <div class="skill-item">Webpack</div>
+                <div class="skill-item">Parcel</div>
+                <div class="skill-item">Ruby on Rails</div>
+                <div class="skill-item">PostgreSQL</div>
+                <div class="skill-item">RESTful APIs</div>
+                <div class="skill-item">Git</div>
+                <div class="skill-item">Performance Optimization</div>
+                <div class="skill-item">UI/UX Design</div>
+                <div class="skill-item">Mobile App Development</div>
+                <div class="skill-item">Responsive Design</div>
+            </div>
+        </div>
+    </section>
+
+    <section id="achievements">
+        <div class="container">
+            <h2 class="section-title">Achievements</h2>
+            <div class="achievements-container">
+                <div class="achievement-card">
+                    <div class="achievement-content">
+                        <h3 class="achievement-title">Hackathon Victories</h3>
+                        <p>In 2019, I attended 7 national level Hackathons and won 5 of them:</p>
+                        <ol class="achievement-list">
+                            <li>WhatTheHack (MSIT, Delhi)</li>
+                            <li>HackData (SNU, Noida)</li>
+                            <li>HackOnHills (NIT, Hamirpur)</li>
+                            <li>HackOnload (VVCE, Mysore)</li>
+                            <li>UltraHack (Delhi)</li>
+                        </ol>
+                        <p>These experiences helped me develop leadership qualities, time management skills, confidence, and networking abilities.</p>
+                        <div class="achievement-gallery">
+                            <img src="https://media.licdn.com/dms/image/v2/C5122AQFzy0VY_wAheQ/feedshare-shrink_800/feedshare-shrink_800/0/1574870060908?e=1745452800&v=beta&t=SaRYGOKN7hdgyY7XKa5CZ5gagS_ZgRGylicha-P5cFc" alt="Hackathon 1" class="gallery-img">
+                            <img src="https://media.licdn.com/dms/image/v2/C5122AQFvWTI8NvwwMg/feedshare-shrink_800/feedshare-shrink_800/0/1574870064263?e=1745452800&v=beta&t=WGZpu01kpjIDPSyv7jnsgR2Fr3QNE754RNTyTJ0ip1A" alt="Hackathon 2" class="gallery-img">
+                            <img src="https://media.licdn.com/dms/image/v2/C5122AQGwMgeULeoTOw/feedshare-shrink_800/feedshare-shrink_800/0/1574870067325?e=1745452800&v=beta&t=eV_vJs6XIvR6BTS_HXBEAnM8EmYT9NuwiRxeQNwOuCA" alt="Hackathon 3" class="gallery-img">
+                            <img src="https://media.licdn.com/dms/image/v2/C5122AQEXv4jS7pqKaA/feedshare-shrink_800/feedshare-shrink_800/0/1574870068818?e=1745452800&v=beta&t=Iywac8VgsVAnrU5r4t2A877TOKIWZ--BTObcEYqWSDY" alt="MIT Hackathon" class="gallery-img">
+                            <img src="https://media.licdn.com/dms/image/v2/C5122AQGzCFMoY-42lA/feedshare-shrink_800/feedshare-shrink_800/0/1574870070409?e=1745452800&v=beta&t=kjuytV9XYMkU76ER6lPYb2dOcKPJMCMb-FY6SKjJb3U" alt="MIT Hackathon 2" class="gallery-img">
+                        </div>
+                    </div>
+                </div>
+
+                <div class="achievement-card">
+                    <div class="achievement-content">
+                        <h3 class="achievement-title">MIT HACKMIT Selection</h3>
+                        <p>Selected as one of the top 50 teams globally by MIT (Massachusetts Institute of Technology), USA for their International level Hackathon "HACKMIT".</p>
+                        <div class="achievement-gallery">
+                            <img src="https://media.licdn.com/dms/image/v2/C5122AQHp_JUB6WXnkA/feedshare-shrink_800/feedshare-shrink_800/0/1574870078403?e=1745452800&v=beta&t=fgjF1O7zGkz7JVL4ORr2bbYLawme_iAZW9XM_e8cG6o" alt="MIT Hackathon" class="gallery-img">
+                        </div>
+                    </div>
+                </div>
+
+                <div class="achievement-card">
+                    <div class="achievement-content">
+                        <h3 class="achievement-title">Bug Fix Appreciation</h3>
+                        <p>Identified a vulnerability in the Smart India Hackathon 2019 website that exposed personal information of participating students and professors. Swiftly alerted the appropriate authorities, leading to the issue's resolution.</p>
+                        <p>Received recognition in the form of an appreciation letter from Prof. Anil D. Sahasrabudhe, Chairman of AICTE.</p>
+                        <div class="achievement-gallery">
+                            <img src="https://i.ibb.co/R4hCvtkc/aictc-appreciation.jpg" alt="Security Recognition" class="gallery-img">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="contact">
+        <div class="container">
+            <h2 class="section-title">Get In Touch</h2>
+            <div class="contact-grid">
+                <div class="contact-info">
+                    <h3>Let's Connect</h3>
+                    <p>Feel free to reach out for collaborations, opportunities, or just to say hello!</p>
+
+                    <div class="contact-detail">
+                        <div class="contact-icon">
+                            <i class="far fa-envelope"></i>
+                        </div>
+                        <div class="contact-text">
+                            <span>Email</span>
+                            <a href="mailto:writetoaman99@gmail.com">writetoaman99@gmail.com</a>
+                        </div>
+                    </div>
+
+                    <div class="contact-detail">
+                        <div class="contact-icon">
+                            <i class="fas fa-phone-alt"></i>
+                        </div>
+                        <div class="contact-text">
+                            <span>Phone</span>
+                            <p>+971-0525607318</p>
+                        </div>
+                    </div>
+
+                    <div class="contact-detail">
+                        <div class="contact-icon">
+                            <i class="fas fa-map-marker-alt"></i>
+                        </div>
+                        <div class="contact-text">
+                            <span>Location</span>
+                            <p>Dubai, UAE</p>
+                        </div>
+                    </div>
+                </div>
+
+                <form class="contact-form">
+                    <div class="form-control">
+                        <label for="name" class="form-label">Name</label>
+                        <input type="text" id="name" class="form-input" placeholder="Your Name">
+                    </div>
+                    <div class="form-control">
+                        <label for="email" class="form-label">Email</label>
+                        <input type="email" id="email" class="form-input" placeholder="Your Email">
+                    </div>
+                    <div class="form-control">
+                        <label for="message" class="form-label">Message</label>
+                        <textarea id="message" class="form-input form-textarea" placeholder="Your Message"></textarea>
+                    </div>
+                    <button type="submit" class="btn btn-submit">Send Message</button>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-logo">Aman Sharma</div>
+                <div class="footer-links">
+                    <a href="#home">Home</a>
+                    <a href="#about">About</a>
+                    <a href="#experience">Experience</a>
+                    <a href="#projects">Projects</a>
+                    <a href="#skills">Skills</a>
+                    <a href="#achievements">Achievements</a>
+                    <a href="#contact">Contact</a>
+                </div>
+                <div class="footer-social">
+                    <a href="https://www.linkedin.com/in/aman32767/" target="_blank">
+                        <i class="fab fa-linkedin-in"></i>
+                    </a>
+                    <a href="https://github.com/aman32767" target="_blank">
+                        <i class="fab fa-github"></i>
+                    </a>
+                    <a href="https://medium.com/@writetoaman99" target="_blank">
+                        <i class="fab fa-medium-m"></i>
+                    </a>
+                    <a href="mailto:writetoaman99@gmail.com">
+                        <i class="far fa-envelope"></i>
+                    </a>
+                </div>
+                <div class="footer-bottom">
+                    <p>&copy; 2025 Aman Sharma. All Rights Reserved.</p>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <div class="scroll-top">
+        <i class="fas fa-arrow-up"></i>
+    </div>
+
+    <script>
+        const menuBtn = document.querySelector('.menu-btn');
+        const navLinks = document.querySelector('.nav-links');
+
+        menuBtn.addEventListener('click', () => {
+            menuBtn.classList.toggle('active');
+            navLinks.classList.toggle('active');
+        });
+
+        document.querySelectorAll('.nav-links a').forEach(link => {
+            link.addEventListener('click', () => {
+                menuBtn.classList.remove('active');
+                navLinks.classList.remove('active');
+            });
+        });
+
+        const header = document.getElementById('header');
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 50) {
+                header.classList.add('scrolled');
+            } else {
+                header.classList.remove('scrolled');
+            }
+        });
+
+        const scrollTopBtn = document.querySelector('.scroll-top');
+        window.addEventListener('scroll', () => {
+            if (window.pageYOffset > 300) {
+                scrollTopBtn.classList.add('active');
+            } else {
+                scrollTopBtn.classList.remove('active');
+            }
+        });
+
+        scrollTopBtn.addEventListener('click', () => {
+            window.scrollTo({
+                top: 0,
+                behavior: 'smooth'
+            });
+        });
+
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+
+                const targetId = this.getAttribute('href');
+                if (targetId === '#') return;
+
+                const targetElement = document.querySelector(targetId);
+                if (targetElement) {
+                    const headerHeight = document.getElementById('header').offsetHeight;
+                    const targetPosition = targetElement.getBoundingClientRect().top + window.pageYOffset - headerHeight;
+
+                    window.scrollTo({
+                        top: targetPosition,
+                        behavior: 'smooth'
+                    });
+                }
+            });
+        });
+
+        const contactForm = document.querySelector('.contact-form');
+        contactForm.addEventListener('submit', function(e) {
+            e.preventDefault();
+            const name = document.getElementById('name').value;
+            const email = document.getElementById('email').value;
+            const message = document.getElementById('message').value;
+
+            if (!name || !email || !message) {
+                alert('Please fill in all fields');
+                return;
+            }
+
+            const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+            if (!emailRegex.test(email)) {
+                alert('Please enter a valid email address');
+                return;
+            }
+
+            alert('Thank you for your message! I will get back to you soon.');
+
+            contactForm.reset();
+        });
+
+        document.addEventListener('DOMContentLoaded', function() {
+            const revealElements = document.querySelectorAll('.experience-card, .project-card, .skill-item, .achievement-card');
+
+            const revealElement = (entries, observer) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.style.opacity = '1';
+                        entry.target.style.transform = 'translateY(0)';
+                        observer.unobserve(entry.target);
+                    }
+                });
+            };
+
+            const options = {
+                threshold: 0.15,
+                rootMargin: '0px 0px -50px 0px'
+            };
+
+            const observer = new IntersectionObserver(revealElement, options);
+
+            revealElements.forEach(element => {
+                element.style.opacity = '0';
+                element.style.transform = 'translateY(20px)';
+                element.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
+                observer.observe(element);
+            });
+        });
+    </script>
+</body>
+</html>
